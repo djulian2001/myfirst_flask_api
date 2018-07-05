@@ -17,6 +17,7 @@ class Item(Resource):
 		# rows = cursor.execute(sql_item, (name,))
 		# row = rows.fetchone()
 		#print(type(row)) <class 'tuple'>
+		connection.close()
 		if row:
 			# this converts the tuple to a list
 			# return json.dumps(row)
