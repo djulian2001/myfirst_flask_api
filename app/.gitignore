@@ -1,0 +1,4 @@
+*.pyc
+section4/env/**
+section5/venv/**
+**/data.db
