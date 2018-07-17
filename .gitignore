@@ -3,3 +3,4 @@ pip-selfcheck.json
 env/*
 .vagrant/*
 *.pyc
+app/section*/venv/*
