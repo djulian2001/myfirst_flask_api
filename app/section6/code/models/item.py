@@ -1,17 +1,20 @@
 # import sqlite3  # no longer required here
 from db import db
 
+from models.store import inventory_table
+
 class ItemModel(db.Model):
 	"""
 		We talk python from this layer /models/*.py
 		inherits base class from SQLAlchemy
 			- db.Model
 	"""
-	__tablename__ = 'items'
+	__tablename__ = 'item'
 
 	id = db.Column(db.Integer,primary_key=True)
 	name = db.Column(db.String(79))
 	price = db.Column(db.Float(precision=2))
+	stores = db.relationship("StoreModel", secondary=inventory_table, back_populates="items")
 
 	def __init__(self, name, price):
 		# super(Item, self).__init__()
@@ -19,7 +22,7 @@ class ItemModel(db.Model):
 		self.price = price
 
 	def json(self):
-		return {'name':self.name,'price':self.price}
+		return {'id':self.id,'name':self.name,'price':self.price}
 
 	@classmethod
 	def find_item(cls, find_name):

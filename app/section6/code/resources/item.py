@@ -98,7 +98,7 @@ class Item(Resource):
 			item.insert_item()
 		except:
 			return {'message':'Error, failed to add item {}'.format(name)}, 500
-		return {'message':'Item {} added.'.format(name)}, 201
+		return {'message':'Item {} added.'.format(item.name)}, 201
 	
 	@jwt_required()
 	def delete(self, name):
@@ -150,7 +150,7 @@ class Item(Resource):
 		try:
 			item.save_item()
 		except:
-			return {'message':'Error, item {} failed to be {}!'.format(event, name)}, 500
+			return {'message':'Error, item {} failed to be {}!'.format(name, event)}, 500
 		return {'message':'Item {} {} to price {}.'.format(item.name, event, item.price)}, 201
 
 

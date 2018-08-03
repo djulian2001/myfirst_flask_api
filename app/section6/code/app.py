@@ -8,7 +8,7 @@ from datetime import timedelta
 from security import authenticate, identity
 from resources.user import UserRegister
 from resources.item import Item, Items
-
+from resources.store import Store, Stores, StoreInventory
 # python3 app.py  # this does run
 
 app = Flask(__name__)
@@ -54,6 +54,10 @@ jwt = JWT(app, authenticate, identity)
 
 api.add_resource(Item, '/item/<string:name>')
 api.add_resource(Items, '/items')
+# using <string:name> is not BP, using a uuid is better
+api.add_resource(Store, '/store/<string:name>')
+api.add_resource(Stores, '/stores')
+api.add_resource(StoreInventory, '/store/<string:name>/inventory')
 api.add_resource(UserRegister, '/register')
 
 
